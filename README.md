@@ -5,6 +5,7 @@ Varjo OpenXR plugin provides support for Varjo OpenXR extensions, enabling you t
 * Video pass-through mixed reality
 * Depth occlusion
 * Foveated rendering
+* Varjo Markers
 
 Built-in plugins OpenXREyeTracker and OpenXRHandTracking are enabled by default with the plugin, enabling eye tracking and hand tracking with Varjo devices.
 
@@ -16,4 +17,3 @@ This repository contains an example project, showing you how to utilize the feat
 1. Clone this repository
 2. Install Varjo OpenXR plugin to your engine from Unreal Marketplace or download the plugin from https://developer.varjo.com/ and place the unpacked plugin folder in `VarjoOpenXRGame\Plugins\`.
 3. Open `VarjoOpenXRGame\VarjoOpenXRGame.uproject`.
-4. When Unreal Engine prompts about rebuilding missing VarjoOpenXRGame modules, click Yes.
