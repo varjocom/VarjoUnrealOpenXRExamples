@@ -3,6 +3,13 @@
 	"EngineAssociation": "4.27",
 	"Category": "",
 	"Description": "",
+	"Modules": [
+		{
+			"Name": "VarjoOpenXRGame",
+			"Type": "Runtime",
+			"LoadingPhase": "Default"
+		}
+	],
 	"Plugins": [
 		{
 			"Name": "XRVisualization",
@@ -31,11 +38,6 @@
 				"Android",
 				"HoloLens"
 			]
-		},
-		{
-			"Name": "VarjoOpenXR",
-			"Enabled": true,
-			"MarketplaceURL": "com.epicgames.launcher://ue/marketplace/product/1804011a48a743cbbeb9336edcafe923"
 		},
 		{
 			"Name": "SteamVR",
