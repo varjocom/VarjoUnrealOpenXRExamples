@@ -1,31 +1,17 @@
 {
 	"FileVersion": 3,
-	"EngineAssociation": "4.27",
+	"EngineAssociation": "5.0",
 	"Category": "",
 	"Description": "",
 	"Plugins": [
-		{
-			"Name": "XRVisualization",
-			"Enabled": false
-		},
 		{
 			"Name": "ResonanceAudio",
 			"Enabled": true
 		},
 		{
-			"Name": "OculusVR",
-			"Enabled": false,
-			"SupportedTargetPlatforms": [
-				"Win32",
-				"Win64",
-				"Android"
-			]
-		},
-		{
 			"Name": "OpenXR",
 			"Enabled": true,
 			"SupportedTargetPlatforms": [
-				"Win32",
 				"Win64",
 				"Linux",
 				"Android",
@@ -38,52 +24,29 @@
 			"MarketplaceURL": "com.epicgames.launcher://ue/marketplace/product/1804011a48a743cbbeb9336edcafe923"
 		},
 		{
-			"Name": "SteamVR",
+			"Name": "OculusVR",
 			"Enabled": false,
 			"SupportedTargetPlatforms": [
-				"Win32",
 				"Win64",
+				"Android"
+			]
+		},
+		{
+			"Name": "Bridge",
+			"Enabled": true,
+			"SupportedTargetPlatforms": [
+				"Win64",
+				"Mac",
 				"Linux"
 			]
 		},
 		{
-			"Name": "MagicLeapMedia",
-			"Enabled": false,
-			"SupportedTargetPlatforms": [
-				"Lumin"
-			]
-		},
-		{
-			"Name": "MagicLeap",
-			"Enabled": false,
-			"SupportedTargetPlatforms": [
-				"Lumin",
-				"Mac",
-				"Win64"
-			]
-		},
-		{
-			"Name": "LuminPlatformFeatures",
-			"Enabled": false,
-			"SupportedTargetPlatforms": [
-				"Lumin"
-			]
-		},
-		{
-			"Name": "MLSDK",
+			"Name": "AndroidFileServer",
 			"Enabled": false
-		},
-		{
-			"Name": "MagicLeapPassableWorld",
-			"Enabled": false,
-			"SupportedTargetPlatforms": [
-				"Lumin",
-				"Mac",
-				"Win64"
-			]
 		}
 	],
 	"TargetPlatforms": [
-		"WindowsNoEditor"
+		"WindowsNoEditor",
+		"Windows"
 	]
 }
