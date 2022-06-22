@@ -8,14 +8,5 @@
 
 #include "OpenXRCore.h"
 
-constexpr const TCHAR* OpenXREnvironmentBlendModeToString(XrEnvironmentBlendMode e)
-{
-    switch (e)
-    {
-        XR_LIST_ENUM_XrEnvironmentBlendMode(XR_ENUM_CASE_STR);
-        default: return TEXT("XrEnvironmentBlendMode_Unknown");
-    }
-}
-
 #include "IOpenXRHMDModule.h"
 #include "IOpenXRExtensionPlugin.h"

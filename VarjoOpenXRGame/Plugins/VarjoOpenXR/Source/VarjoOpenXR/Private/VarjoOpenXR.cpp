@@ -4,7 +4,7 @@
 
 #include "VarjoOpenXR.h"
 
-#include "AlphaBlendModePlugin.h"
+#include "MixedRealityPlugin.h"
 #include "DepthPlugin.h"
 #include "FoveatedRenderingPlugin.h"
 #include "VarjoMarkersPlugin.h"
@@ -20,14 +20,14 @@ namespace VarjoOpenXR
     class FVarjoOpenXRModule : public IModuleInterface
     {
     public:
+        FMixedRealityPlugin MixedRealityPlugin;
         FDepthPlugin DepthPlugin;
-        FAlphaBlendModePlugin AlphaBlendModePlugin;
         FFoveatedRenderingPlugin FoveatedRenderingPlugin;
         FVarjoMarkersPlugin VarjoMarkersPlugin;
 
         void StartupModule() override
         {
-            AlphaBlendModePlugin.Register();
+            MixedRealityPlugin.Register();
             DepthPlugin.Register();
             FoveatedRenderingPlugin.Register();
             VarjoMarkersPlugin.Register();
@@ -42,9 +42,19 @@ namespace VarjoOpenXR
             VarjoMarkersPlugin.Unregister();
             FoveatedRenderingPlugin.Unregister();
             DepthPlugin.Unregister();
-            AlphaBlendModePlugin.Unregister();
+            MixedRealityPlugin.Unregister();
         }
     };
+}
+
+bool UVarjoOpenXRFunctionLibrary::IsMixedRealitySupported()
+{
+    return VarjoOpenXR::g_VarjoOpenXRModule->MixedRealityPlugin.IsMixedRealitySupported();
+}
+
+bool UVarjoOpenXRFunctionLibrary::IsMixedRealityEnabled()
+{
+    return VarjoOpenXR::g_VarjoOpenXRModule->MixedRealityPlugin.IsMixedRealityEnabled();
 }
 
 void UVarjoOpenXRFunctionLibrary::SetDepthTestEnabled(bool Enabled)

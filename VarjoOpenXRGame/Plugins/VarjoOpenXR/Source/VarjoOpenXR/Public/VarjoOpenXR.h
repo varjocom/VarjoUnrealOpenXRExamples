@@ -20,6 +20,17 @@ class VARJOOPENXR_API UVarjoOpenXRFunctionLibrary : public UBlueprintFunctionLib
     GENERATED_BODY()
 
 public:
+    /**
+     * Check if mixed reality is supported by active OpenXR runtime.
+     */
+    UFUNCTION(BlueprintPure, meta = (DisplayName = "Is Mixed Reality Supported", Keywords = "VarjoOpenXR mixed reality"), Category = "VarjoOpenXR|MR")
+        static bool IsMixedRealitySupported();
+
+    /**
+     * Check if mixed reality is enabled.
+     */
+    UFUNCTION(BlueprintPure, meta = (DisplayName = "Is Mixed Reality Enabled", Keywords = "VarjoOpenXR mixed reality"), Category = "VarjoOpenXR|MR")
+        static bool IsMixedRealityEnabled();
 
     /**
      * Enables/disables depth testing.
