@@ -54,19 +54,14 @@ namespace VarjoOpenXR
     // Unfortunately, we can't do it in a better way due to lack of Unreal Engine API
     void* FFoveatedRenderingPlugin::OnEnumerateViewConfigurationViews(XrInstance InInstance, XrSystemId InSystem, XrViewConfigurationType InViewConfigurationType, uint32_t InViewIndex, void* InNext)
     {
-        if (!bFoveatedRenderingSupported)
-        {
-            return InNext;
-        }
-
         // If we're using a different view configuration type return early, otherwise we may access FoveatedViewConfigurationView array out-of-bounds
-        if (InViewConfigurationType != XR_VIEW_CONFIGURATION_TYPE_PRIMARY_QUAD_VARJO)
+        if (InViewConfigurationType != XR_VIEW_CONFIGURATION_TYPE_PRIMARY_QUAD_VARJO || !IsFoveatedRenderingEnabled())
         {
             bFoveatedRenderingEnabledThisFrame = false;
             return InNext;
         }
 
-        bFoveatedRenderingEnabledThisFrame = IsFoveatedRenderingEnabled();
+        bFoveatedRenderingEnabledThisFrame = true;
 
         check(InViewIndex < sizeof(FoveatedViewConfigurationView) / sizeof(FoveatedViewConfigurationView[0]));
         FoveatedViewConfigurationView[InViewIndex] = XrFoveatedViewConfigurationViewVARJO{ XR_TYPE_FOVEATED_VIEW_CONFIGURATION_VIEW_VARJO, InNext, bFoveatedRenderingEnabledThisFrame };
@@ -75,7 +70,7 @@ namespace VarjoOpenXR
 
     const void* FFoveatedRenderingPlugin::OnLocateViews(XrSession InSession, XrTime InDisplayTime, const void* InNext)
     {
-        if (!bFoveatedRenderingEnabledThisFrame)
+        if (!bFoveatedRenderingEnabledThisFrame || ViewSpace == XR_NULL_HANDLE || RenderGazeSpace == XR_NULL_HANDLE)
         {
             return InNext;
         }
@@ -96,9 +91,6 @@ namespace VarjoOpenXR
     {
         const UVarjoOpenXRRuntimeSettings* Settings = GetDefault<UVarjoOpenXRRuntimeSettings>();
         check(Settings);
-        return bFoveatedRenderingSupported
-            && Settings->FoveatedRendering
-            && ViewSpace != XR_NULL_HANDLE
-            && RenderGazeSpace != XR_NULL_HANDLE;
+        return bFoveatedRenderingSupported && Settings->FoveatedRendering;
     }
 }

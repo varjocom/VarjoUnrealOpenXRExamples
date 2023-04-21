@@ -33,6 +33,20 @@ public:
         static bool IsMixedRealityEnabled();
 
     /**
+     * Sets the view offset. When the offset is 0.0, rendering happens at the eye location. When the offset is 1.0, rendering happens at the video pass-through camera location.
+     *
+     * @param    Offset. Must be between 0.0 and 1.0.
+     */
+    UFUNCTION(BlueprintCallable, meta = (DisplayName = "Set View Offset", Keywords = "VarjoOpenXR view offset"), Category = "VarjoOpenXR|MR")
+        static bool SetViewOffset(float Offset = 1.0f);
+
+    /**
+     * Get view offset.
+     */
+    UFUNCTION(BlueprintPure, meta = (DisplayName = "Get View Offset", Keywords = "VarjoOpenXR view offset"), Category = "VarjoOpenXR|MR")
+        static void GetViewOffset(float& Offset);
+
+    /**
      * Enables/disables depth testing.
      *
      * @param    Enabled

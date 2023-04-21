@@ -57,6 +57,16 @@ bool UVarjoOpenXRFunctionLibrary::IsMixedRealityEnabled()
     return VarjoOpenXR::g_VarjoOpenXRModule->MixedRealityPlugin.IsMixedRealityEnabled();
 }
 
+bool UVarjoOpenXRFunctionLibrary::SetViewOffset(float Offset)
+{
+    return VarjoOpenXR::g_VarjoOpenXRModule->MixedRealityPlugin.SetViewOffset(Offset);
+}
+
+void UVarjoOpenXRFunctionLibrary::GetViewOffset(float& Offset)
+{
+    VarjoOpenXR::g_VarjoOpenXRModule->MixedRealityPlugin.GetViewOffset(Offset);
+}
+
 void UVarjoOpenXRFunctionLibrary::SetDepthTestEnabled(bool Enabled)
 {
     VarjoOpenXR::g_VarjoOpenXRModule->DepthPlugin.SetDepthTestEnabled(Enabled);

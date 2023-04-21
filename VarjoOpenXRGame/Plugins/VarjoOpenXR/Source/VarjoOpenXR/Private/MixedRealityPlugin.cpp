@@ -15,6 +15,30 @@ namespace VarjoOpenXR
         UnregisterOpenXRExtensionModularFeature();
     }
 
+    bool FMixedRealityPlugin::GetOptionalExtensions(TArray<const ANSICHAR*>& OutExtensions)
+    {
+        OutExtensions.Add(XR_VARJO_VIEW_OFFSET_EXTENSION_NAME);
+        return true;
+    }
+
+    void FMixedRealityPlugin::PostCreateInstance(XrInstance InInstance)
+    {
+        XrResult result = xrGetInstanceProcAddr(InInstance, "xrSetViewOffsetVARJO", reinterpret_cast<PFN_xrVoidFunction*>(&xrSetViewOffsetVARJO));
+        if (result == XR_ERROR_FUNCTION_UNSUPPORTED)
+        {
+            xrSetViewOffsetVARJO = nullptr;
+            return;
+        }
+
+        XR_ENSURE(result);
+    }
+
+    const void* FMixedRealityPlugin::OnBeginSession(XrSession InSession, const void* InNext)
+    {
+        Session = InSession;
+        return InNext;
+    }
+
     void* FMixedRealityPlugin::OnEnumerateViewConfigurationViews(XrInstance InInstance, XrSystemId InSystem, XrViewConfigurationType InViewConfigurationType, uint32_t InViewIndex, void* InNext)
     {
         if (bBlendModesEnumerated)
@@ -57,5 +81,35 @@ namespace VarjoOpenXR
 
         // Return true if primary blend mode is alpha blend or if override is used and set to alpha blend.
         return BlendModeOverride ? BlendModeOverride == 3 : PrimaryBlendMode == XR_ENVIRONMENT_BLEND_MODE_ALPHA_BLEND;
+    }
+
+    bool FMixedRealityPlugin::SetViewOffset(float Offset)
+    {
+        if (xrSetViewOffsetVARJO == nullptr )
+        {
+            return false;
+        }
+        else
+        {
+            if (XR_SUCCEEDED(xrSetViewOffsetVARJO(Session, Offset)))
+            {
+                ViewOffset = Offset;
+                bViewOffsetSet = true;
+                return true;
+            }
+            return false;
+        }
+    }
+
+    void FMixedRealityPlugin::GetViewOffset(float& Offset)
+    {
+        if (!bViewOffsetSet)
+        {
+            Offset = IsMixedRealityEnabled() ? 1.0f : 0.0f;
+        }
+        else
+        {
+            Offset = ViewOffset;
+        }
     }
 }
