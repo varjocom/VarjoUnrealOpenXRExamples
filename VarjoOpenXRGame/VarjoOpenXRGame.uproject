@@ -1,6 +1,6 @@
 {
 	"FileVersion": 3,
-	"EngineAssociation": "5.0",
+	"EngineAssociation": "5.1",
 	"Category": "",
 	"Description": "",
 	"Plugins": [
@@ -12,10 +12,7 @@
 			"Name": "OpenXR",
 			"Enabled": true,
 			"SupportedTargetPlatforms": [
-				"Win64",
-				"Linux",
-				"Android",
-				"HoloLens"
+				"Win64"
 			]
 		},
 		{
@@ -24,29 +21,12 @@
 			"MarketplaceURL": "com.epicgames.launcher://ue/marketplace/product/1804011a48a743cbbeb9336edcafe923"
 		},
 		{
-			"Name": "OculusVR",
-			"Enabled": false,
-			"SupportedTargetPlatforms": [
-				"Win64",
-				"Android"
-			]
-		},
-		{
-			"Name": "Bridge",
-			"Enabled": true,
-			"SupportedTargetPlatforms": [
-				"Win64",
-				"Mac",
-				"Linux"
-			]
-		},
-		{
-			"Name": "AndroidFileServer",
-			"Enabled": false
+			"Name": "XRVisualization",
+			"Enabled": true
 		}
 	],
 	"TargetPlatforms": [
-		"WindowsNoEditor",
-		"Windows"
+		"Windows",
+		"WindowsNoEditor"
 	]
 }
