@@ -8,7 +8,8 @@ public class VarjoOpenXRGameTarget : TargetRules
     public VarjoOpenXRGameTarget( TargetInfo Target) : base(Target)
     {
         Type = TargetType.Game;
-        DefaultBuildSettings = BuildSettingsVersion.V2;
+        DefaultBuildSettings = BuildSettingsVersion.Latest;
+        IncludeOrderVersion = EngineIncludeOrderVersion.Latest;
         ExtraModuleNames.AddRange( new string[] { "VarjoOpenXRGame" } );
     }
 }

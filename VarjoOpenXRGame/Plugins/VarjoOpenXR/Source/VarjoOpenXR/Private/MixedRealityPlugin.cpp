@@ -3,6 +3,11 @@
 #include "MixedRealityPlugin.h"
 #include "VarjoOpenXR.h"
 
+#include "IHeadMountedDisplay.h"
+#include "IXRTrackingSystem.h"
+#include "EngineGlobals.h"
+#include "Engine/Engine.h"
+
 namespace VarjoOpenXR
 {
     void FMixedRealityPlugin::Register()
@@ -79,8 +84,22 @@ namespace VarjoOpenXR
         static const auto CVar = IConsoleManager::Get().FindConsoleVariable(TEXT("xr.OpenXREnvironmentBlendMode"));
         int32 BlendModeOverride = CVar->GetInt();
 
-        // Return true if primary blend mode is alpha blend or if override is used and set to alpha blend.
-        return BlendModeOverride ? BlendModeOverride == 3 : PrimaryBlendMode == XR_ENVIRONMENT_BLEND_MODE_ALPHA_BLEND;
+        int32 SystemFlags = 0;
+
+        if (GEngine->XRSystem.IsValid())
+        {
+            SystemFlags = GEngine->XRSystem->GetXRSystemFlags();
+            auto HMD = GEngine->XRSystem->GetHMDDevice();
+            if (!HMD || !HMD->IsHMDConnected())
+            {
+                SystemFlags = 0;
+            }
+        }
+
+        const bool bMixedRealityEnabled = EXRSystemFlags::IsAR == (SystemFlags & EXRSystemFlags::IsAR);
+
+        // Return true if selected environment blend mode is alpha blend or if override is used and set to alpha blend.
+        return (BlendModeOverride ? BlendModeOverride == 3 : bMixedRealityEnabled);
     }
 
     bool FMixedRealityPlugin::SetViewOffset(float Offset)

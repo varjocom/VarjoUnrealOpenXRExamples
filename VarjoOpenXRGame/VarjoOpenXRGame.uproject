@@ -1,6 +1,6 @@
 {
 	"FileVersion": 3,
-	"EngineAssociation": "5.1",
+	"EngineAssociation": "5.2",
 	"Category": "",
 	"Description": "",
 	"Modules": [
@@ -19,7 +19,10 @@
 			"Name": "OpenXR",
 			"Enabled": true,
 			"SupportedTargetPlatforms": [
-				"Win64"
+				"Win64",
+				"Linux",
+				"Android",
+				"HoloLens"
 			]
 		},
 		{
@@ -29,6 +32,7 @@
 	],
 	"TargetPlatforms": [
 		"Windows",
-		"WindowsNoEditor"
+		"WindowsNoEditor",
+		"HoloLens"
 	]
 }
