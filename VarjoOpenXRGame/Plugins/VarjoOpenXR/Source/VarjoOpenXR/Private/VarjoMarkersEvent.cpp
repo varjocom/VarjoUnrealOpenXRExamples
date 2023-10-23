@@ -3,22 +3,26 @@
 #include "VarjoMarkersEvent.h"
 
 #include "Misc/CoreDelegates.h"
-#include "VarjoMarkersPlugin.h"
+
+
+UVarjoMarkerDelegates::FNewVarjoMarkerDetected UVarjoMarkerDelegates::NewVarjoMarkerDetected;
+UVarjoMarkerDelegates::FVarjoMarkerMoved UVarjoMarkerDelegates::VarjoMarkerMoved;
+UVarjoMarkerDelegates::FVarjoMarkerLost UVarjoMarkerDelegates::VarjoMarkerLost;
 
 void UVarjoMarkersEvent::OnRegister()
 {
     Super::OnRegister();
 
-    VarjoOpenXR::FVarjoMarkersPlugin::NewVarjoMarkerDetected.AddUObject(this, &UVarjoMarkersEvent::FNewVarjoMarkerDetected_Handler);
-    VarjoOpenXR::FVarjoMarkersPlugin::VarjoMarkerMoved.AddUObject(this, &UVarjoMarkersEvent::FVarjoMarkerMoved_Handler);
-    VarjoOpenXR::FVarjoMarkersPlugin::VarjoMarkerLost.AddUObject(this, &UVarjoMarkersEvent::FVarjoMarkerLost_Handler);
+    UVarjoMarkerDelegates::NewVarjoMarkerDetected.AddUObject(this, &UVarjoMarkersEvent::FNewVarjoMarkerDetected_Handler);
+    UVarjoMarkerDelegates::VarjoMarkerMoved.AddUObject(this, &UVarjoMarkersEvent::FVarjoMarkerMoved_Handler);
+    UVarjoMarkerDelegates::VarjoMarkerLost.AddUObject(this, &UVarjoMarkersEvent::FVarjoMarkerLost_Handler);
 }
 
 void UVarjoMarkersEvent::OnUnregister()
 {
     Super::OnUnregister();
 
-    VarjoOpenXR::FVarjoMarkersPlugin::NewVarjoMarkerDetected.RemoveAll(this);
-    VarjoOpenXR::FVarjoMarkersPlugin::VarjoMarkerMoved.RemoveAll(this);
-    VarjoOpenXR::FVarjoMarkersPlugin::VarjoMarkerLost.RemoveAll(this);
+    UVarjoMarkerDelegates::NewVarjoMarkerDetected.RemoveAll(this);
+    UVarjoMarkerDelegates::VarjoMarkerMoved.RemoveAll(this);
+    UVarjoMarkerDelegates::VarjoMarkerLost.RemoveAll(this);
 }

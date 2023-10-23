@@ -1,6 +1,7 @@
 // Copyright 2021 Varjo Technologies Oy. All rights reserved.
 
 #include "VarjoMarkersPlugin.h"
+#include "VarjoMarkersEvent.h"
 #include "VarjoOpenXR.h"
 
 #include "UObject/NameTypes.h"
@@ -11,10 +12,6 @@
 
 namespace VarjoOpenXR
 {
-    FVarjoMarkersPlugin::FNewVarjoMarkerDetected FVarjoMarkersPlugin::NewVarjoMarkerDetected;
-    FVarjoMarkersPlugin::FVarjoMarkerMoved FVarjoMarkersPlugin::VarjoMarkerMoved;
-    FVarjoMarkersPlugin::FVarjoMarkerLost FVarjoMarkersPlugin::VarjoMarkerLost;
-
     void FVarjoMarkersPlugin::Register()
     {
         RegisterOpenXRExtensionModularFeature();
@@ -98,16 +95,16 @@ namespace VarjoOpenXR
                     markerTransform = trackerTransform * trackingToWoldTransform;
 
                     if (newMarker) {
-                        NewVarjoMarkerDetected.Broadcast(id, markerTransform.GetLocation(), markerTransform.Rotator(), size);
+                        UVarjoMarkerDelegates::NewVarjoMarkerDetected.Broadcast(id, markerTransform.GetLocation(), markerTransform.Rotator(), size);
                     }
                     else {
-                        VarjoMarkerMoved.Broadcast(id, markerTransform.GetLocation(), markerTransform.Rotator(), size);
+                        UVarjoMarkerDelegates::VarjoMarkerMoved.Broadcast(id, markerTransform.GetLocation(), markerTransform.Rotator(), size);
                     }
                 }
             }
             else
             {
-                VarjoMarkerLost.Broadcast(id);
+                UVarjoMarkerDelegates::VarjoMarkerLost.Broadcast(id);
             }
         }
     }

@@ -36,16 +36,6 @@ namespace VarjoOpenXR
         bool SetMarkerTrackingMode(int32 MarkerId, EMarkerTrackingMode TrackingMode);
         bool GetMarkerTrackingMode(int32 MarkerId, EMarkerTrackingMode& TrackingMode);
 
-        DECLARE_MULTICAST_DELEGATE_FourParams(FNewVarjoMarkerDetected, int32, const FVector&, const FRotator&, const FVector2D&);
-        static FNewVarjoMarkerDetected NewVarjoMarkerDetected;
-
-        DECLARE_MULTICAST_DELEGATE_FourParams(FVarjoMarkerMoved, int32, const FVector&, const FRotator&, const FVector2D&);
-        static FVarjoMarkerMoved VarjoMarkerMoved;
-
-        DECLARE_MULTICAST_DELEGATE_OneParam(FVarjoMarkerLost, int32);
-        static FVarjoMarkerLost VarjoMarkerLost;
-
-
     private:
         bool bVarjoMarkersSupported = false;
         bool bVarjoMarkersEnabled = false;
