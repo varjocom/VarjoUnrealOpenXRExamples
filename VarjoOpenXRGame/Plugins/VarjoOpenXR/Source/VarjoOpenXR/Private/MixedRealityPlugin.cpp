@@ -89,11 +89,6 @@ namespace VarjoOpenXR
         if (GEngine->XRSystem.IsValid())
         {
             SystemFlags = GEngine->XRSystem->GetXRSystemFlags();
-            auto HMD = GEngine->XRSystem->GetHMDDevice();
-            if (!HMD || !HMD->IsHMDConnected())
-            {
-                SystemFlags = 0;
-            }
         }
 
         const bool bMixedRealityEnabled = EXRSystemFlags::IsAR == (SystemFlags & EXRSystemFlags::IsAR);

@@ -41,12 +41,10 @@ namespace VarjoOpenXR
         XR_ENSURE(result);
     }
 
-    const void* FDepthPlugin::OnBeginSession(XrSession InSession, const void* InNext)
+    void FDepthPlugin::PostCreateSession(XrSession InSession)
     {
         Session = InSession;
         State = {};
-
-        return InNext;
     }
 
     const void* FDepthPlugin::OnEndProjectionLayer(XrSession InSession, int32 InLayerIndex, const void* InNext, XrCompositionLayerFlags& OutFlags)

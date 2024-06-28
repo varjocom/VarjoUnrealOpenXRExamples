@@ -37,6 +37,7 @@ public class VarjoOpenXR : ModuleRules
             {
                 "CoreUObject",
                 "Engine",
+                "InputCore",
                 "AugmentedReality",
                 "Slate",
                 "SlateCore",

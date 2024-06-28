@@ -30,11 +30,11 @@ public:
     UPROPERTY(GlobalConfig, EditAnywhere, Category = "Foveated Rendering", Meta = (DisplayName = "Enable Foveated Rendering", Tooltip = "Enable Foveated Rendering. Please note that this option is usually required for high performance, high quality rendering."))
         bool FoveatedRendering = true;
 
-#if WITH_EDITOR
-    virtual bool CanEditChange(const FProperty* InProperty) const override;
-
     IConsoleVariable* CVarReferenceOpenXRPreferredViewConfiguration;
     virtual void PostInitProperties() override;
+
+#if WITH_EDITOR
+    virtual bool CanEditChange(const FProperty* InProperty) const override;
     virtual void PostEditChangeProperty(struct FPropertyChangedEvent& PropertyChangedEvent) override;
 #endif // WITH_EDITOR
 };

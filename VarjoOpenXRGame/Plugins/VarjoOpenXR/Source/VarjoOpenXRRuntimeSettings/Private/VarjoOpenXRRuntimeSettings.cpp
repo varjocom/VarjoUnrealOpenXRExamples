@@ -5,23 +5,12 @@
 #include "Modules/ModuleInterface.h"
 #include "Modules/ModuleManager.h"
 
+#include "HAL/IConsoleManager.h"
+
 DEFINE_LOG_CATEGORY(LogVarjoOpenXRSettings);
 
 IMPLEMENT_MODULE(FDefaultModuleImpl, VarjoOpenXRRuntimeSettings);
 
-
-#if WITH_EDITOR
-bool UVarjoOpenXRRuntimeSettings::CanEditChange(const FProperty* InProperty) const
-{
-    const bool ParentVal = Super::CanEditChange(InProperty);
-
-    if (InProperty->GetFName() == GET_MEMBER_NAME_CHECKED(UVarjoOpenXRRuntimeSettings, FoveatedRendering))
-    {
-        return ParentVal && RenderingMode == VarjoRenderingMode_QuadView;
-    }
-
-    return ParentVal;
-}
 
 void UVarjoOpenXRRuntimeSettings::PostInitProperties()
 {
@@ -58,6 +47,19 @@ void UVarjoOpenXRRuntimeSettings::PostInitProperties()
             CVarReferenceOpenXRPreferredViewConfiguration->Set(TEXT("0"), ECVF_SetByProjectSetting);
         }
     }
+}
+
+#if WITH_EDITOR
+bool UVarjoOpenXRRuntimeSettings::CanEditChange(const FProperty* InProperty) const
+{
+    const bool ParentVal = Super::CanEditChange(InProperty);
+
+    if (InProperty->GetFName() == GET_MEMBER_NAME_CHECKED(UVarjoOpenXRRuntimeSettings, FoveatedRendering))
+    {
+        return ParentVal && RenderingMode == VarjoRenderingMode_QuadView;
+    }
+
+    return ParentVal;
 }
 
 void UVarjoOpenXRRuntimeSettings::PostEditChangeProperty(struct FPropertyChangedEvent& PropertyChangedEvent)

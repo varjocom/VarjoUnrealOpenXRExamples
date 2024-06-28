@@ -1,7 +1,7 @@
 {
 	"FileVersion": 3,
-	"Version": 122,
-	"VersionName": "1.2.2",
+	"Version": 123,
+	"VersionName": "1.2.3",
 	"FriendlyName": "Varjo OpenXR",
 	"Description": "Varjo OpenXR plugin provides support for Varjo OpenXR extensions.",
 	"Category": "Virtual Reality",
@@ -10,7 +10,7 @@
 	"DocsURL": "https://developer.varjo.com/docs/unreal/ue5/unreal5",
 	"MarketplaceURL": "com.epicgames.launcher://ue/marketplace/product/1804011a48a743cbbeb9336edcafe923",
 	"SupportURL": "",
-	"CanContainContent": false,
+	"CanContainContent": true,
 	"IsBetaVersion": false,
 	"IsExperimentalVersion": false,
 	"Installed": false,

@@ -8,6 +8,7 @@
 #include "DepthPlugin.h"
 #include "FoveatedRenderingPlugin.h"
 #include "VarjoMarkersPlugin.h"
+#include "VarjoController.h"
 
 DEFINE_LOG_CATEGORY(LogVarjoOpenXR);
 
@@ -15,7 +16,7 @@ DEFINE_LOG_CATEGORY(LogVarjoOpenXR);
 
 namespace VarjoOpenXR
 {
-    static class FVarjoOpenXRModule * g_VarjoOpenXRModule;
+    static class FVarjoOpenXRModule* g_VarjoOpenXRModule;
 
     class FVarjoOpenXRModule : public IModuleInterface
     {
@@ -24,6 +25,7 @@ namespace VarjoOpenXR
         FDepthPlugin DepthPlugin;
         FFoveatedRenderingPlugin FoveatedRenderingPlugin;
         FVarjoMarkersPlugin VarjoMarkersPlugin;
+        FVarjoController VarjoControllerPlugin;
 
         void StartupModule() override
         {
@@ -31,6 +33,7 @@ namespace VarjoOpenXR
             DepthPlugin.Register();
             FoveatedRenderingPlugin.Register();
             VarjoMarkersPlugin.Register();
+            VarjoControllerPlugin.Register();
 
             g_VarjoOpenXRModule = this;
         }
@@ -43,6 +46,7 @@ namespace VarjoOpenXR
             FoveatedRenderingPlugin.Unregister();
             DepthPlugin.Unregister();
             MixedRealityPlugin.Unregister();
+            VarjoControllerPlugin.Unregister();
         }
     };
 }
