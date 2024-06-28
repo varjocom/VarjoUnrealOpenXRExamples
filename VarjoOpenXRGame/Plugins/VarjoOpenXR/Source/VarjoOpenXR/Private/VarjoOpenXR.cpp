@@ -10,6 +10,9 @@
 #include "VarjoMarkersPlugin.h"
 #include "VarjoController.h"
 
+#include "Misc/EngineVersionComparison.h"
+#include "HAL/IConsoleManager.h"
+
 DEFINE_LOG_CATEGORY(LogVarjoOpenXR);
 
 #define LOCTEXT_NAMESPACE "FVarjoOpenXRModule"
@@ -36,6 +39,17 @@ namespace VarjoOpenXR
             VarjoControllerPlugin.Register();
 
             g_VarjoOpenXRModule = this;
+
+
+            // This is a workaround for bug in FOpenXRHMDModule that appeared in 5.4.0
+            // and is fixed for 5.4.2 in the following commit.
+            // https://github.com/EpicGames/UnrealEngine/commit/265cf72abb1f40855c50a64d53b7a13272c97180
+            
+            // If running version 5.4.0 or 5.4.1
+            #if UE_VERSION_NEWER_THAN(5, 4, -1) && UE_VERSION_OLDER_THAN(5, 4, 2)
+            IConsoleVariable* setting = IConsoleManager::Get().FindConsoleVariable(TEXT("xr.RetainPreInitInstance"));
+            setting->Set(TEXT("True"), ECVF_SetByProjectSetting);
+            #endif
         }
 
         void ShutdownModule() override

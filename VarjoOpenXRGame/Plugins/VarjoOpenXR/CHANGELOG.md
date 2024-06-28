@@ -10,6 +10,11 @@ Compatible with Varjo Base 4.0 or newer.
 
 - Support for Varjo Controllers
 - Support for XR-4
+- Support for Unreal Engine 5.4
+    - For engine versions 5.4.0 and 5.4.1 the plugin sets 'xr.RetainPreInitInstance' to True as
+      a workaround to a crash. The crash is fixed for 5.4.2 by this commit
+      https://github.com/EpicGames/UnrealEngine/commit/265cf72abb1f40855c50a64d53b7a13272c97180
+
 
 ### Fixed
 
