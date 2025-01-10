@@ -1,7 +1,7 @@
 {
 	"FileVersion": 3,
-	"Version": 124,
-	"VersionName": "1.2.4",
+	"Version": 125,
+	"VersionName": "1.2.5",
 	"FriendlyName": "Varjo OpenXR",
 	"Description": "Varjo OpenXR plugin provides support for Varjo OpenXR extensions.",
 	"Category": "Virtual Reality",

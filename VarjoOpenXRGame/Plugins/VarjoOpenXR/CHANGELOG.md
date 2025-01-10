@@ -2,6 +2,14 @@
 
 All notable changes to this plugin are documented in this file from version 1.2.3 onwards.
 
+## 1.2.5
+
+No changes. New plugin version for UE 5.5 release.
+
+## 1.2.4
+
+No changes. New plugin version for UE 5.4 release.
+
 ## 1.2.3
 
 Compatible with Varjo Base 4.0 or newer.
