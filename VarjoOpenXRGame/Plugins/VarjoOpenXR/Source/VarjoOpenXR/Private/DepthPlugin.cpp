@@ -5,7 +5,6 @@
 
 namespace VarjoOpenXR
 {
-
     void FDepthPlugin::Register()
     {
         RegisterOpenXRExtensionModularFeature();
@@ -47,7 +46,7 @@ namespace VarjoOpenXR
         State = {};
     }
 
-    const void* FDepthPlugin::OnEndProjectionLayer(XrSession InSession, int32 InLayerIndex, const void* InNext, XrCompositionLayerFlags& OutFlags)
+    const void* FDepthPlugin::OnEndProjectionLayer_RHIThread(XrSession InSession, int32 InLayerIndex, const void* InNext, XrCompositionLayerFlags& OutFlags)
     {
         if (!State.DepthTestEnabled)
         {
@@ -60,7 +59,6 @@ namespace VarjoOpenXR
         DepthTest.depthTestRangeFarZ = State.DepthTestRangeEnabled ? State.DepthTestRangeFarZ : HUGE_VALF;
         return &DepthTest;
     }
-
 
     void FDepthPlugin::SetDepthTestEnabled(bool Enabled)
     {

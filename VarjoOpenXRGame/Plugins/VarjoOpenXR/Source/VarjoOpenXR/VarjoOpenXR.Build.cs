@@ -9,6 +9,9 @@ public class VarjoOpenXR : ModuleRules
         PCHUsage = ModuleRules.PCHUsageMode.UseExplicitOrSharedPCHs;
         PrivatePCHHeaderFile = @"Private\OpenXRCommon.h";
 
+        // Workaround to Windows 11 SDK 10.0.26100.0 INFINITY issue (introduced in 25131)
+        PublicDefinitions.Add("_UCRT_LEGACY_INFINITY");
+
         PublicIncludePaths.AddRange(
             new string[] {
                 // ... add public include paths required here ...

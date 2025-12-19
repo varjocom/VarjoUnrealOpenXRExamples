@@ -2,6 +2,11 @@
 
 All notable changes to this plugin are documented in this file from version 1.2.3 onwards.
 
+## 1.2.6
+
+- Support for Unreal Engine 5.6
+- Support for OpenXR Hand Interactions
+
 ## 1.2.5
 
 No changes. New plugin version for UE 5.5 release.

@@ -18,7 +18,7 @@ namespace VarjoOpenXR
         virtual bool GetOptionalExtensions(TArray<const ANSICHAR*>& OutExtensions) override;
         virtual void PostCreateInstance(XrInstance InInstance) override;
         virtual void PostCreateSession(XrSession InSession) override;
-        virtual const void* OnEndProjectionLayer(XrSession InSession, int32 InLayerIndex, const void* InNext, XrCompositionLayerFlags& OutFlags) override;
+        virtual const void* OnEndProjectionLayer_RHIThread(XrSession InSession, int32 InLayerIndex, const void* InNext, XrCompositionLayerFlags& OutFlags) override;
 
         /** Plugin functions */
         void SetDepthTestEnabled(bool Enabled);
