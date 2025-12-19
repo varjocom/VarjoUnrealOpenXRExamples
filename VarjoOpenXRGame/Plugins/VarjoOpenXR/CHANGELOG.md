@@ -2,6 +2,10 @@
 
 All notable changes to this plugin are documented in this file from version 1.2.3 onwards.
 
+## 1.2.7
+
+- Support for Unreal Engine 5.7
+
 ## 1.2.6
 
 - Support for Unreal Engine 5.6
