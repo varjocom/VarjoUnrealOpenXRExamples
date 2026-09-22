@@ -169,12 +169,11 @@ namespace VarjoOpenXR
         ControllerModels.Add(Path, VarjoRightControllerPath);
     }
 
-    bool FVarjoController::GetInteractionProfile(XrInstance InInstance, FString& OutKeyPrefix, XrPath& OutPath, bool& OutHasHaptics)
+    bool FVarjoController::GetInteractionProfiles(XrInstance InInstance, TArray<FString>& OutKeyPrefixes, TArray<XrPath>& OutPaths, TArray<bool>& OutHasHaptics)
     {
-        OutKeyPrefix = "VarjoController";
-        OutPath = InteractionProfile;
-        OutHasHaptics = true;
-
+        OutKeyPrefixes.Add("VarjoController");
+        OutPaths.Add(InteractionProfile);
+        OutHasHaptics.Add(true);
         return true;
     }
 

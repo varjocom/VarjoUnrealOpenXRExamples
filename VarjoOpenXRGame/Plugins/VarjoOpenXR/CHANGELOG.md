@@ -2,6 +2,14 @@
 
 All notable changes to this plugin are documented in this file from version 1.2.3 onwards.
 
+## 1.2.8
+
+- Support for Unreal Engine 5.8
+- Fixed build warnings in VarjoHandInteraction
+- Worked around a UE5.8 quad view ghost shadow on controller models
+    - The example project sets 'r.Shadow.Preshadows' to 0. Apply the same setting in your
+      own project if affected. Per-object shadows are unaffected.
+
 ## 1.2.7
 
 - Support for Unreal Engine 5.7

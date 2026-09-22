@@ -6,6 +6,7 @@ Varjo OpenXR plugin provides support for Varjo OpenXR extensions, enabling you t
 * Depth occlusion
 * Foveated rendering
 * Varjo Markers
+* Varjo Controllers
 
 Built-in plugins OpenXREyeTracker and OpenXRHandTracking are enabled by default with the plugin, enabling eye tracking and hand tracking with Varjo devices.
 

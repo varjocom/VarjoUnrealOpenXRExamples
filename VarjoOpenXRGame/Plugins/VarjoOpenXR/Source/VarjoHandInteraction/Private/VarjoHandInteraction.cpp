@@ -33,9 +33,8 @@ DEFINE_LOG_CATEGORY(LogVarjoHandInteraction);
 
 FVarjoHandInteraction* FVarjoHandInteraction::m_Instance = nullptr;
 
-FVarjoHandInteraction::FVarjoInteractionController::FVarjoInteractionController() 
-	: RolePath(XR_NULL_PATH)
-	, AimPoseAction(XR_NULL_HANDLE)
+FVarjoHandInteraction::FVarjoInteractionController::FVarjoInteractionController()
+	: AimPoseAction(XR_NULL_HANDLE)
 	, AimPoseActionPath(XR_NULL_PATH)
 	, GripPoseAction(XR_NULL_HANDLE)
 	, GripPoseActionPath(XR_NULL_PATH)
@@ -57,6 +56,7 @@ FVarjoHandInteraction::FVarjoInteractionController::FVarjoInteractionController(
 	, GraspReadyActionPath(XR_NULL_PATH)
 	, PinchReadyAction(XR_NULL_HANDLE)
 	, PinchReadyActionPath(XR_NULL_PATH)
+	, RolePath(XR_NULL_PATH)
 	, AimDeviceId(-1)
 	, GripDeviceId(-1)
 	, PinchDeviceId(-1)
@@ -157,8 +157,8 @@ void FVarjoHandInteraction::FVarjoInteractionController::AddAction(XrActionSet& 
 	Info.actionType = InActionType;
 	Info.countSubactionPaths = SubactionPaths.Num();
 	Info.subactionPaths = SubactionPaths.GetData();
-	FCStringAnsi::Strcpy(Info.actionName, XR_MAX_ACTION_NAME_SIZE, ActionName);
-	FCStringAnsi::Strcpy(Info.localizedActionName, XR_MAX_LOCALIZED_ACTION_NAME_SIZE, ActionName);
+	FCStringAnsi::Strncpy(Info.actionName, ActionName, XR_MAX_ACTION_NAME_SIZE);
+	FCStringAnsi::Strncpy(Info.localizedActionName, ActionName, XR_MAX_LOCALIZED_ACTION_NAME_SIZE);
 	XR_ENSURE(xrCreateAction(InActionSet, &Info, &OutAction));
 }
 
@@ -407,8 +407,8 @@ const void* FVarjoHandInteraction::OnCreateSession(XrInstance InInstance, XrSyst
 	XrActionSetCreateInfo Info;
 	Info.type = XR_TYPE_ACTION_SET_CREATE_INFO;
 	Info.next = nullptr;
-	FCStringAnsi::Strcpy(Info.actionSetName, XR_MAX_ACTION_SET_NAME_SIZE, "varjohandinteractionactionset");
-	FCStringAnsi::Strcpy(Info.localizedActionSetName, XR_MAX_LOCALIZED_ACTION_SET_NAME_SIZE, "Varjo Hand Interaction Action Set");
+	FCStringAnsi::Strncpy(Info.actionSetName, "varjohandinteractionactionset", XR_MAX_ACTION_SET_NAME_SIZE);
+	FCStringAnsi::Strncpy(Info.localizedActionSetName, "Varjo Hand Interaction Action Set", XR_MAX_LOCALIZED_ACTION_SET_NAME_SIZE);
 	Info.priority = 0;
 	XR_ENSURE(xrCreateActionSet(Instance, &Info, &HandInteractionActionSet));
 
